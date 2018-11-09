@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Mijn bestellingen en huurcontracten</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+ 	<div th:replace="fragments/header :: header">Header</div>
+	<div class="container">
+	    <div class="text-center">
+			<div th:if="${bestellingen != null}">
+				<div th:if="${!bestellingen.empty}" class = "well">
+					<div class="container table-striped well" >
+						<div th:each="bestelling: ${bestellingen}" class="row">
+							<form action="/bestellingDetailsKlant.html" method="GET">
+								<div class="col-md-3 text-left" th:text="${bestelling.thisKetel.type}"> vn </div>
+								<div class="col-md-4 text-left" th:text="${bestelling.status}"> fn </div>
+								<div class="col-md-5 text-right">
+										<button class="btn btn-success btn-md" th:name="id" th:value=${bestelling.id} th:text="Details" type="submit"></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="well">
+				<Form method=POST action="/bestellingPlaatsen.html" th:object="${nieuweketel}">
+					<button class="btn btn-warning btn-md" type="submit" th:text="'Nieuwe bestelling'"></button>
+				</Form>
+			</div>
+			<div th:if="${aanvragen != null}">
+				<div th:if="${!aanvragen.empty}" class = "well">
+					<div class="container table-striped well" >
+						<div th:each="aanvraag: ${aanvragen}" class="row">
+								<div class="col-md-3 text-left"> <p>Aanvragen demoketel</p> </div>
+								<div class="col-md-3 text-left" th:text="'Van: ' + ${aanvraag.beginDatum}"> vn </div>
+								<div class="col-md-4 text-left" th:text="'Tot: ' + ${aanvraag.eindDatum}"> fn </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div th:if="${huurcontracten != null}">
+				<div th:if="${!huurcontracten.empty}" class = "well">
+					<div class="container table-striped well" >
+						<div th:each="huurcontract: ${huurcontracten}" class="row">
+								<div class="col-md-3 text-left" text="Contract demoketel"> <p>Contracten demoketel</p> </div>
+								<div class="col-md-3 text-left" th:text="'Van: ' + ${huurcontract.beginDatum}"> vn </div>
+								<div class="col-md-4 text-left" th:text="'Tot: ' + ${huurcontract.eindDatum}"> fn </div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+    	<div th:replace="fragments/footer :: footer">&copy; 2013 The Static Templates</div>
+	</div>
+</body>
+</html>

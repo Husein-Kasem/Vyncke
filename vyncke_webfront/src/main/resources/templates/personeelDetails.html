@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+ 	<div th:replace="fragments/header :: header">Header</div>
+	<div class="container">
+	    <div class="text-center">
+			<div class="container table-striped well" >
+				<div class="row">
+					<div class="col-md-1 text-left"> Naam: </div>
+					<div class="col-md-2 text-left" th:text="${personeeldetails.naam}"> fn </div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 text-left"> Voornaam: </div>
+					<div class="col-md-2 text-left" th:text="${personeeldetails.voornaam}"> fn </div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 text-left"> E-mail: </div>
+					<div class="col-md-2 text-left" th:text="${personeeldetails.email}"> fn </div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 text-left"> Functie: </div>
+					<div class="col-md-2 text-left" th:text="${personeeldetails.functie.naam}"> fn </div>
+				</div>
+				<div class="well">
+					<form action="/beheerPersoneel" th:method="POST">
+	    				<button class="btn btn-success btn-md" th:name="delete" th:value=${personeeldetails.id} th:text="Delete" type="submit"></button>
+    					<button class="btn btn-warning btn-md" th:name="wijzig" th:value=${personeeldetails.id} th:text="Wijzig" type="submit"></button>
+    				</form>	
+				</div>
+			</div>
+	    </div>
+    	<div th:replace="fragments/footer :: footer">&copy; 2013 The Static Templates</div>
+	</div>
+</body>
+</html>

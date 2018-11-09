@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Nieuwe offerte</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+ 	<div th:replace="fragments/header :: header">Header</div>
+	<div class="container">
+	    <div class="text-center">
+	    	<h1>Offerte toevoegen</h1>
+			<div class="well">
+				<form method="POST" action="/nieuweOfferte.html" th:object="${nieuweOfferte}">
+					<div class="well">
+						<div><label>BestellingID:</label>&nbsp;<input type="text" th:field = "*{bestellingId}"/></div>
+						<div><label>Prijs:</label>&nbsp;<input type="text" th:field = "*{prijs}"/></div>
+			            <div><label>UitersteDatum:</label>&nbsp;<input type="date" th:field = "*{uitersteDatum}"/></div>
+		            </div>
+				</form>
+			</div>
+	   </div>
+    	<div th:replace="fragments/footer :: footer">&copy; 2013 The Static Templates</div>
+    </div>
+</body>
+</html>

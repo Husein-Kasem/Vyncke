@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Details</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+ 	<div th:replace="fragments/header :: header">Header</div>
+	<div class="container">
+	    <div class="text-center">
+			<div class="container table-striped well" >
+				<div class="row">
+					<div class="col-md-1 text-left"> Keteltype: </div>
+					<div class="col-md-3 text-left" th:text="${bestellingdetails.thisKetel.type}"> fn </div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 text-left"> Energieoutput: </div>
+					<div class="col-md-3 text-left" th:text="${bestellingdetails.thisKetel.energieOutput}"> fn </div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 text-left"> Deadline: </div>
+					<div class="col-md-3 text-left" th:text="${bestellingdetails.datumDeadline}"> fn </div>
+				</div>
+				<div th:if="${bestellingdetails.status != 'actief'}" class="well">
+					<form action="/deleteBestelling" th:method="POST">
+						<input type="hidden" name="_method" value="delete">
+	    				<button class="btn btn-success btn-md" th:name="delete" th:value=${bestellingdetails.id} th:text="'Bestelling annuleren'" type="submit"></button>
+    				</form>	
+				</div>
+			</div>
+			<div th:if="${offertes != null}">
+				<div th:if="${!offertes.empty}" class = "well">
+					<div class="container table-striped well" >
+						<div th:each="offerte: ${offertes}" class="row">
+							<form action="/offerteAccepteren" method="POST">
+								<div class="col-md-3 text-left" th:text="${offerte.prijs} + ' euro'"> vn </div>
+								<div class="col-md-4 text-left" th:text="${offerte.uitersteDatum}"> fn </div>
+								<div class="col-md-5 text-right">
+									<button class="btn btn-success btn-md" th:name="id" th:value="${offerte.id}" th:text="Accepteren" type="submit"></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+    		<div th:replace="fragments/footer :: footer">&copy; 2013 The Static Templates</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/vyncke_bestellingen
+    username: vynckeuser
+    password: vynckepass
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+server:
+  port: 8084

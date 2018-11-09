@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="vyncke_bestellingen" />
+        <module name="vyncke_klanten" />
+        <module name="vyncke_personeel" />
+        <module name="vyncke_verhuur" />
+        <module name="vyncke_webfront" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
