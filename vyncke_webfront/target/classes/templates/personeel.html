@@ -15,13 +15,14 @@
 	    	<div th:replace="fragments/zoekpersoneel :: zoekpersoneel">ZoekPersoneel</div>
 			<div th:if="${personeel != null}">
 				<div th:if="${!personeel.empty}" class = "well">
+					<div class="text-center" id="personeellijst">Personeel</div>
 					<div class="container table-striped well" >
 						<div th:each="personeel1: ${personeel}" class="row">
 							<form action="/personeelDetails.html" method="GET">
 								<div class="col-md-3 text-left" th:text="${personeel1.voornaam} + ' ' + ${personeel1.naam}"> vn </div>
 								<div class="col-md-4 text-left" th:text="${personeel1.functie.naam}"> fn </div>
 								<div class="col-md-5 text-right">
-									<button class="btn btn-success btn-md" th:name="id" th:value=${personeel1.id} th:text="Details" type="submit"></button>
+									<button class="btn btn-success btn-md" th:classappend="${personeel1.voornaam} + ${personeel1.naam}" th:name="id" th:value=${personeel1.id} th:text="Details" type="submit"></button>
 								</div>
 							</form>
 						</div>
